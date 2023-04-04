@@ -6,6 +6,9 @@ interface IProps {
   isDone: boolean;
 }
 
-export const TodoItem = ({ id, text }: IProps) => {
-  return <div className="bg-red-200">{text}</div>;
+export const TodoItem = ({ id, text, isDone }: IProps) => {
+  const bgItem = id % 2 === 0 ? "bg-red-50" : "bg-neutral-100";
+  const isDoneCSS = isDone ? "line-through" : "";
+
+  return <div className={`p-4 rounded ${bgItem} ${isDoneCSS}`}>{text}</div>;
 };
