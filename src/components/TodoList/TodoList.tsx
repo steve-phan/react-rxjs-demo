@@ -15,7 +15,7 @@ const mockTodos = [
   { id: 10, text: "Clean the bathroom", isDone: true },
 ];
 
-const TodoList = () => {
+export const TodoList = () => {
   return (
     <div>
       {mockTodos.map((todo) => (
@@ -24,5 +24,3 @@ const TodoList = () => {
     </div>
   );
 };
-
-export default TodoList;
