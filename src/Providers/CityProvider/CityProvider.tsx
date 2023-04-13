@@ -1,5 +1,6 @@
-import React, { ReactNode, createContext, useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import React, { ReactNode, createContext, useMemo, useState } from "react";
+
+import { useCityLongLat } from "@/src/hooks/useCityLongLat";
 
 interface ICityContextType {
   city: string;
@@ -30,24 +31,17 @@ export const CityContext = createContext<ICityContextType>({
 
 export const CityProvider = ({ children }: { children: ReactNode }) => {
   const [city, setCity] = useState("Berlin");
-  const { data, isLoading, isError } = useQuery(
-    "fetchCityLongLat",
-    async () => {
-      const response = await fetch(generateLongLatUrl(city));
-      const { result } = await response.json();
-      const { longitude: long, latitude: lat } = result[0];
-      return { long, lat };
-    }
-  );
-  // console.log({ city });
-  // useEffect(() => {}, [city]);
+  const longlatUrl = useMemo(() => {
+    return generateLongLatUrl(city);
+  }, [city]);
+  const { cityLongLat, isLoading, isError } = useCityLongLat(longlatUrl);
 
   return (
     <CityContext.Provider
       value={{
         city,
         setCity,
-        cityLongLat: data ?? defaultLongLat,
+        cityLongLat: cityLongLat ?? defaultLongLat,
         isError,
         isLoading,
       }}
