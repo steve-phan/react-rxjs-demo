@@ -1,6 +1,7 @@
 import React, { ReactNode, createContext, useMemo, useState } from "react";
 
 import { useCityLongLat } from "@/src/hooks/useCityLongLat";
+import { BehaviorSubject } from "rxjs";
 
 interface ICityContextType {
   city: string;
@@ -31,6 +32,10 @@ export const CityContext = createContext<ICityContextType>({
 
 export const CityProvider = ({ children }: { children: ReactNode }) => {
   const [city, setCity] = useState("Berlin");
+
+  const citySubject$ = new BehaviorSubject("Berlin");
+  const activeCity = citySubject$.getValue();
+  console.log({ activeCity });
   const longlatUrl = useMemo(() => {
     return generateLongLatUrl(city);
   }, [city]);

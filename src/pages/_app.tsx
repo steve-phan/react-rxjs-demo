@@ -6,9 +6,5 @@ import { GlobalProviders } from "../Providers";
 import "../globals.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <GlobalProviders>
-      <Component {...pageProps} />
-    </GlobalProviders>
-  );
+  return <Component {...pageProps} />;
 }
