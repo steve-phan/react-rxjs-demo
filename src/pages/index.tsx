@@ -1,13 +1,6 @@
 "use client";
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
-import { fromEvent, scan } from "rxjs";
-import { throttleTime } from "rxjs/internal/operators/throttleTime";
-import { debounceTime } from "rxjs/internal/operators/debounceTime";
-import { Observable } from "rxjs/internal/Observable";
-
-const inter = Inter({ subsets: ["latin"] });
+import { fromEvent, Observable } from "rxjs";
 
 export default function Home() {
   const [count, setCount] = useState(0);

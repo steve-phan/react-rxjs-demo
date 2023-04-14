@@ -35,7 +35,7 @@ export const CityProvider = ({ children }: { children: ReactNode }) => {
 
   const citySubject$ = new BehaviorSubject("Berlin");
   const activeCity = citySubject$.getValue();
-  console.log({ activeCity });
+  // console.log({ activeCity });
   const longlatUrl = useMemo(() => {
     return generateLongLatUrl(city);
   }, [city]);
