@@ -48,8 +48,11 @@ export const SmartCounter = () => {
         id="range"
         className="border border-rose-700 border-solid"
         type="number"
+        data-testid="range-input"
       />
-      <h1 id="display">{activeNum} </h1>
+      <h1 id="display" data-testid="counter-display">
+        {activeNum}{" "}
+      </h1>
     </div>
   );
 };
